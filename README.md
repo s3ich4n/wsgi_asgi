@@ -1,6 +1,11 @@
 # 파이썬 HTTP 처리의 기본: WSGI 부터 ASGI까지
 
+## 내용
+
 + 이 Repository는 파이썬을 통한 HTTP 처리를 설명한다.
+  + 참고할 문서
+    + [PEP 333](https://www.python.org/dev/peps/pep-333/)
+    + [PEP 3333](https://www.python.org/dev/peps/pep-3333/)
 
 + 이 Repository를 통해 학습하려는 사용자는 아래의 선수 지식이 필요하다
   + 웹

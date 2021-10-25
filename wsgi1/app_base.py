@@ -1,5 +1,6 @@
 #
 # WSGI 로 서비스되는 웹 애플리케이션
+#   출처: https://www.python.org/dev/peps/pep-0333/
 #
 # @author      Seongeun Yu (s3ich4n@gmail.com)
 # @date        2021/10/23 17:07 created.
