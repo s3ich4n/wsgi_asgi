@@ -9,10 +9,7 @@
 #
 
 
-from wsgiref.util import setup_testing_defaults
-
-
-def application(
+def easy_application(
         environ,
         start_response,
 ):
@@ -22,7 +19,6 @@ def application(
     :param start_response:
     :return:
     """
-    setup_testing_defaults(environ)
 
     #
     # body는 아래와 같은 방식으로 준비한다.
@@ -32,7 +28,13 @@ def application(
     #     )
     # ]
     #
-    response_body = "wanna-say: s3ich4n rules!".encode("UTF-8")
+
+    # 문자열 encode를 미들웨어 단에서 처리하려면
+    # 그냥 파이썬 변수를 넘겨줘서, 마지막에 처리하도록 세팅한다.
+    response_body = "wanna say paris?"
+    #
+    # 여기가 마지막이면, UTF-8 인코딩을 할 수 있도록 해야한다.
+    # response_body = "wanna-say: s3ich4n rules!".encode("UTF-8")
 
     status = '200 OK'
 

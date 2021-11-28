@@ -12,7 +12,8 @@
 import os
 import sys
 
-from app_base_class import AppClass
+from wsgi1.pep_example.app_base_class import AppClass
+from wsgi1.pep_example.app_base import easy_application
 
 
 # 시스템 인코딩 및 non-decodeable bytes에 연관된 에러 핸들러
@@ -45,13 +46,10 @@ def run_with_cgi(application):
     :param application:
     :return:
     """
-    environ = {k: unicode_to_wsgi(v) for k, v in os.environ.items()}
-    environ['wsgi.input']        = sys.stdin.buffer
-    environ['wsgi.errors']       = sys.stderr
-    environ['wsgi.version']      = (1, 0)
-    environ['wsgi.multithread']  = False
-    environ['wsgi.multiprocess'] = True
-    environ['wsgi.run_once']     = True
+    # environ = {k: unicode_to_wsgi(v) for k, v in os.environ.items()}
+    environ = {'wsgi.input': sys.stdin.buffer, 'wsgi.errors': sys.stderr,
+               'wsgi.version': (1, 0), 'wsgi.multithread': False,
+               'wsgi.multiprocess': True, 'wsgi.run_once': True}
 
     if environ.get('HTTPS', 'off') in ('on', '1'):
         environ['wsgi.url_scheme'] = 'https'
@@ -105,6 +103,7 @@ def run_with_cgi(application):
 
         return write
 
+    # 앱 호출을 "했다" 고 가정하자.
     result = application(environ, start_response)
     try:
         for data in result:
@@ -118,4 +117,9 @@ def run_with_cgi(application):
 
 
 # 구동은 이런식으로 한다.
-run_with_cgi(AppClass)
+#   아래 로직에 대해 주석해제 후 사용.
+#
+#   1. 클래스 형식의 WSGI 애플리케이션 구현체
+# run_with_cgi(AppClass)
+#   2. 메소드 형식의 WSGI 애플리케이션 구현체
+# run_with_cgi(easy_application)
