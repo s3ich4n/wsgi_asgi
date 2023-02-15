@@ -28,13 +28,10 @@ def easy_application(
     #     )
     # ]
     #
-
-    # 문자열 encode를 미들웨어 단에서 처리하려면
-    # 그냥 파이썬 변수를 넘겨줘서, 마지막에 처리하도록 세팅한다.
-    response_body = "wanna say paris?"
+    # 여기가 서버단으로 보내는 마지막 지점이면
+    # UTF-8 인코딩을 할 수 있도록 해야한다.
     #
-    # 여기가 마지막이면, UTF-8 인코딩을 할 수 있도록 해야한다.
-    # response_body = "wanna-say: s3ich4n rules!".encode("UTF-8")
+    response_body = "wanna-say: s3ich4n rules! function".encode("UTF-8")
 
     status = '200 OK'
 
@@ -44,7 +41,7 @@ def easy_application(
     ]
 
     # Callback...
-    # 'start_response()' callable as specified by PEP 3333
+    #   'start_response()' callable as specified by PEP 3333
     start_response(status, response_headers)
 
-    return [(response_body), ]
+    return [response_body, ]

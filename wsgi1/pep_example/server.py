@@ -9,11 +9,7 @@
 #
 
 
-import os
 import sys
-
-from wsgi1.pep_example.app_base_class import AppClass
-from wsgi1.pep_example.app_base import easy_application
 
 
 # 시스템 인코딩 및 non-decodeable bytes에 연관된 에러 핸들러
@@ -114,12 +110,3 @@ def run_with_cgi(application):
     finally:
         if hasattr(result, 'close'):
             result.close()
-
-
-# 구동은 이런식으로 한다.
-#   아래 로직에 대해 주석해제 후 사용.
-#
-#   1. 클래스 형식의 WSGI 애플리케이션 구현체
-# run_with_cgi(AppClass)
-#   2. 메소드 형식의 WSGI 애플리케이션 구현체
-# run_with_cgi(easy_application)

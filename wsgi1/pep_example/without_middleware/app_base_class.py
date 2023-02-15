@@ -22,12 +22,8 @@ class AppClass:
 
     """
 
-    # 문자열 encode를 미들웨어 단에서 처리하려면
-    # 그냥 파이썬 변수를 넘겨줘서, 마지막에 처리하도록 세팅한다.
-    RES = "ultimate"
-    #
     # 여기가 마지막이면, UTF-8 인코딩을 할 수 있도록 해야한다.
-    # RES = "wanna-say: s3ich4n rules!".encode("UTF-8")
+    RES = "wanna-say: s3ich4n rules! class".encode("UTF-8")
 
     def __init__(self, environ, start_response):
         self.environ = environ

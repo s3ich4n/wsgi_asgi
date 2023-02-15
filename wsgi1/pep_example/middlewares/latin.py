@@ -6,10 +6,9 @@
 # @modified    2021/11/28 16:06 modified.
 # @copyright   MIT License
 #
-from wsgi1.pep_example.app_base_class import AppClass
-from wsgi1.pep_example.piglatin import piglatin
-from wsgi1.pep_example.server import run_with_cgi
-from wsgi1.pep_example.app_base import easy_application
+
+
+from .piglatin import piglatin
 
 
 class LatinIter:
@@ -60,9 +59,9 @@ class Latinator:
                     transform_ok.append(True)
                     # Strip content-length if present, else it'll be wrong
                     response_headers = [(name, value)
-                        for name, value in response_headers
-                            if name.lower() != 'content-length'
-                    ]
+                                        for name, value in response_headers
+                                        if name.lower() != 'content-length'
+                                        ]
                     break
 
             write = start_response(status, response_headers, exc_info)
@@ -75,16 +74,3 @@ class Latinator:
                 return write
 
         return LatinIter(self.application(environ, start_latin), transform_ok)
-
-
-# Run foo_app under a Latinator's control,
-# Using the example CGI gateway
-#
-#   아래 로직에 대해 주석해제 후 사용.
-#
-#   1. 클래스 형식의 WSGI 애플리케이션 구현체,
-#      Latinator 미들웨어를 통과함.
-# run_with_cgi(Latinator(easy_application))
-#   2. 메소드 형식의 WSGI 애플리케이션 구현체
-#      Latinator 미들웨어를 통과함.
-# run_with_cgi(Latinator(AppClass))
