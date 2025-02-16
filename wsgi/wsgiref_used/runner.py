@@ -11,7 +11,7 @@
 
 from wsgiref.simple_server import make_server
 
-from wsgi1.pep_example.app_base_class import AppClass
+from wsgi.pep_example.app_base_class import AppClass
 
 
 with make_server('', 8000, AppClass) as httpd:
